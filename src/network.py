@@ -61,8 +61,8 @@ class NeuralNetwork:
                 itr_accuracy.append(batch_accuracy)
 
             # average loss and accuracy of the batch
-            train_loss.append(np.sum(itr_loss, axis=0) / len(itr_loss))
-            train_acc.append(np.sum(itr_accuracy, axis=0) / len(itr_accuracy))
+            train_loss.append(np.average(itr_loss, axis=0))
+            train_acc.append(np.average(itr_accuracy, axis=0))
 
             # validation loss and accuracy
             loss, acc = self.test(X_val, y_val)
@@ -70,7 +70,8 @@ class NeuralNetwork:
             val_acc.append(acc)
 
         elapsed_time = time.time() - start_time
-        print("Accuracy: {0:.6f}s".format(val_acc[-1]))
+        print("Training Accuracy: {0:.6f}s".format(np.average(train_acc[-5:])))  # assuming iterations >= 5
+        print("Validation Accuracy: {0:.6f}s".format(np.average(val_acc[-5:])))  # assuming iterations >= 5
         print("Time taken: {0:.2f}s".format(elapsed_time))
         if save_plot_to_directory:
             utils.plot_epoch(
