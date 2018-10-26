@@ -26,7 +26,6 @@ def read_weights(file, input_dimentions):
 def load_data(directory, scope="train"):
     X = np.loadtxt(f"{directory}/x_{scope}.csv", delimiter=",")
     y = np.loadtxt(f"{directory}/y_{scope}.csv", delimiter=",", dtype=int)
-    assert X.shape[0] == y.shape[0]
     return X, y
 
 
