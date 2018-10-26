@@ -17,6 +17,7 @@ file_name = ['Question_2/dw-100-40-4.csv', 'Question_2/db-100-40-4.csv', 'Questi
 true_file = ['true-dw-100-40-4.csv', 'true-db-100-40-4.csv', 'true-dw-28-6-4.csv', 'true-db-28-6-4.csv', 'true-dw-14-28-4.csv', 'true-db-14-28-4.csv']
 threshold = 0.05
 
+
 def read_file(name):
     l = list()
     with open(name) as f:
@@ -24,6 +25,7 @@ def read_file(name):
         for row in reader:
             l.append(row)
     return l
+
 
 """
     You can try your grading function, while the function is yet to decided. However, in the ideal situation you should expect dif = 0
@@ -34,6 +36,7 @@ def do_some_grading(l0, l1, th):
         return 1
     else:
         return 0
+
 
 """
     The threshold is introduced to address the numerial bias due to rounded floats, which could be as small as zero
@@ -51,6 +54,7 @@ def compare(sub, true, threshold=0):
             scores.append(do_some_grading(l0, l1, threshold))
     return scores
 
+
 true_grads = list()
 for f in true_file:
     true_grads.append(read_file(os.path.join(truth_path,f)))
@@ -61,4 +65,3 @@ for i, fn in enumerate(file_name):
     s = compare(grads, true_grads[i], threshold)
     score += s
 print(np.sum(score))
-            
