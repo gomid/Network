@@ -11,5 +11,5 @@ b = (do,)
 Network architecture:
 * N x Fully-connected layer with ReLU  
 * Softmax output layer
-
+Optimizer: SGD
 Cost function: Cross-Entropy loss
